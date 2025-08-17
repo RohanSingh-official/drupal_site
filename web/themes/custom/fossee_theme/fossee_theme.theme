@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * @file
+ * FOSSEE theme functions.
+ */
+
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function fossee_theme_preprocess_page(&$variables) {
+  // Check if we're on the front page
+  $variables['is_front'] = \Drupal::service('path.matcher')->isFrontPage();
+  
+  // Add theme path for assets
+  $variables['theme_path'] = \Drupal::service('extension.list.theme')->getPath('fossee_theme');
+  
+  // Get current route name for additional conditionals
+  $route_match = \Drupal::routeMatch();
+  $variables['route_name'] = $route_match->getRouteName();
+}
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function fossee_theme_preprocess_html(&$variables) {
+  // Add front page class to body
+  if (\Drupal::service('path.matcher')->isFrontPage()) {
+    $variables['attributes']['class'][] = 'front-page';
+  }
+  
+  // Add page-specific classes
+  $route_match = \Drupal::routeMatch();
+  $route_name = $route_match->getRouteName();
+  if ($route_name) {
+    $variables['attributes']['class'][] = 'page-' . str_replace('.', '-', $route_name);
+  }
+}

@@ -1,0 +1,68 @@
+# Ignore Drupal core
+web/core/
+
+# Ignore contributed modules and themes
+web/modules/contrib/
+web/themes/contrib/
+
+# Ignore vendor
+vendor/
+
+# Ignore files directories
+web/sites/*/files/
+web/sites/*/private/
+
+# Ignore sensitive configuration
+web/sites/*/settings.php
+web/sites/*/settings.local.php
+web/sites/*/services.yml
+web/sites/*/services.local.yml
+
+# Ignore development files
+.ddev/db_snapshots/
+.ddev/import-db/
+.ddev/tmp/
+*.log
+.DS_Store
+Thumbs.db
+
+# Ignore composer packages and Drupal files
+web/modules/README.txt
+web/profiles/README.txt
+web/themes/README.txt
+web/INSTALL.txt
+web/example.gitignore
+web/robots.txt
+web/update.php
+web/.csslintrc
+web/.eslintignore
+web/.eslintrc.json
+web/.ht.router.php
+web/.htaccess
+web/autoload.php
+web/index.php
+
+# Ignore backup files
+*.bak
+*.tmp
+*.swp
+*~
+*.sql.gz
+
+# Ignore IDE files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Ignore OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Keep database dump for sharing
+!fossee_database.sql
