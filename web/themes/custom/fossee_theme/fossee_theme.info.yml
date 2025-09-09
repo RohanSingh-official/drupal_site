@@ -2,7 +2,7 @@ name: FOSSEE Theme
 type: theme
 description: 'FOSSEE Official Website Theme'
 package: Custom
-core_version_requirement: ^10
+core_version_requirement: ^10 || ^11
 base theme: false
 
 libraries:

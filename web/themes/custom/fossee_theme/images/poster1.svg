@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="280" viewBox="0 0 200 280">
+  <rect width="200" height="280" fill="#74b9ff" stroke="#0984e3" stroke-width="2"/>
+  <text x="100" y="140" font-family="Arial" font-size="16" fill="white" text-anchor="middle" dominant-baseline="middle">
+    <tspan x="100" y="120">FOSSEE</tspan>
+    <tspan x="100" y="140">Poster 1</tspan>
+    <tspan x="100" y="160">Placeholder</tspan>
+  </text>
+</svg>
