@@ -64,5 +64,8 @@ web/index.php
 ehthumbs.db
 Thumbs.db
 
+# Ignore temporary reference files
+temp_reference/
+
 # Keep database dump for sharing
 !fossee_database.sql

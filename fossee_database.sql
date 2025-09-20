@@ -241,7 +241,8 @@ CREATE TABLE `menu_tree` (
   `p8` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `p9` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `menu_parents` (`menu_name`,`p1`,`p2`,`p3`,`p4`,`p5`,`p6`,`p7`,`p8`,`p9`),
+  KEY `menu_parents` (`menu_name`,`p1`(100),`p2`(100),`p3`(100),`p4`(100)),
+  KEY `menu_parents_extended` (`menu_name`,`p5`(100),`p6`(100),`p7`(100),`p8`(100),`p9`(100)),
   KEY `menu_parent_expand_child` (`menu_name`,`expanded`,`has_children`,`parent`(32)),
   KEY `menu_tree_enabled_title` (`menu_name`,`enabled`,`weight`,`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
