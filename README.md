@@ -187,6 +187,13 @@ Each tab shows relevant content with smooth transitions.
    - **Solution**: Updated `core_version_requirement` to `^10 || ^11`
    - **Impact**: Theme works with both Drupal 10 and 11
 
+4. **MySQL Index Key Length Error**:
+   - **Problem**: `menu_parents` index exceeded MySQL's 3072-byte limit (9,308 bytes total)
+   - **Solution**: Split into two optimized indexes with 100-character prefixes:
+     - `menu_parents`: menu_name + p1-p4 (1,728 bytes)
+     - `menu_parents_extended`: menu_name + p5-p9 (2,128 bytes)
+   - **Impact**: Database imports successfully without ERROR 1071 on utf8mb4 systems
+
 ### Database Improvements:
 - Expanded from ~161 lines to 500+ lines of comprehensive SQL
 - Includes all essential Drupal tables for proper functionality
