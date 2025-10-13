@@ -1,0 +1,2 @@
+# This file ensures the files directory is tracked in Git
+# The files directory is required by Drupal for uploaded files and assets

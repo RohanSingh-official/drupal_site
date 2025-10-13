@@ -12,11 +12,18 @@ vendor/
 web/sites/*/files/
 web/sites/*/private/
 
-# Ignore sensitive configuration
-web/sites/*/settings.php
+# Allow tracking of default site's settings.php and placeholder files
+!web/sites/default/settings.php
+!web/sites/default/files/.gitkeep
+!web/sites/default/files/README.md
+
+# Ignore sensitive configuration (but allow default site settings.php)
 web/sites/*/settings.local.php
 web/sites/*/services.yml
 web/sites/*/services.local.yml
+# Ignore settings.php for all sites except default
+web/sites/*/settings.php
+!web/sites/default/settings.php
 
 # Ignore development files
 .ddev/db_snapshots/
