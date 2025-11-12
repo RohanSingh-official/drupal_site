@@ -42,14 +42,20 @@ $databases['default']['default'] = [
  * This allows overriding database settings using environment variables
  * for production or other environments.
  */
-if (getenv('DATABASE_URL')) {
-  $database_url = getenv('DATABASE_URL');
+// Environment overrides: honor DB_* vars even if DATABASE_URL is not set.
+$env_db_name = getenv('DB_NAME');
+$env_db_user = getenv('DB_USER');
+$env_db_pass = getenv('DB_PASSWORD');
+$env_db_host = getenv('DB_HOST');
+$env_db_port = getenv('DB_PORT');
+
+if ($env_db_name || $env_db_user || $env_db_pass || $env_db_host || $env_db_port || getenv('DATABASE_URL')) {
   $databases['default']['default'] = [
-    'database' => getenv('DB_NAME') ?: 'fossee_drupal',
-    'username' => getenv('DB_USER') ?: 'drupal_user',
-    'password' => getenv('DB_PASSWORD') ?: '',
-    'host' => getenv('DB_HOST') ?: 'localhost', 
-    'port' => getenv('DB_PORT') ?: '3306',
+    'database' => $env_db_name ?: 'fossee_drupal',
+    'username' => $env_db_user ?: 'drupal_user',
+    'password' => $env_db_pass ?: '',
+    'host' => $env_db_host ?: 'localhost',
+    'port' => $env_db_port ?: '3306',
     'driver' => 'mysql',
     'prefix' => '',
     'collation' => 'utf8mb4_general_ci',

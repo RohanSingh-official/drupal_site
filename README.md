@@ -94,10 +94,12 @@ fossee_database.sql                 # Database dump
    ddev composer install
    ```
 
-4. **Import Database**
+4. **Import Database** ⚠️ **CRITICAL STEP - DO NOT SKIP!**
    ```bash
    ddev import-db --file=fossee_database.sql
    ```
+   
+   **Why this is critical**: Without importing the database, you'll be redirected to the Drupal installation screen (install.php). The database contains all the configuration that tells Drupal the site is already set up.
 
 5. **Clear Cache**
    ```bash
@@ -110,6 +112,23 @@ fossee_database.sql                 # Database dump
    ```
 
 Your site will be available at: `http://fossee-drupal-site.ddev.site`
+
+## 🧰 Setup without DDEV (plain PHP/MySQL)
+
+1. Install Composer and PHP 8.3+ with ext-gd enabled.
+2. From the project root, install dependencies and scaffold Drupal:
+   ```bash
+   composer install
+   ```
+3. Point your web server’s document root to `web/`.
+4. Create a database and either:
+   - Import `fossee_database.sql`, or
+   - Install Drupal normally and then enable the `fossee_theme`.
+5. Configure DB via environment vars (preferred): `DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASSWORD`, `DB_PORT`. The site will read these directly (no `DATABASE_URL` needed).
+6. Clear caches with Drush once it boots:
+   ```bash
+   vendor/bin/drush cr
+   ```
 
 ## 🎯 Usage
 
