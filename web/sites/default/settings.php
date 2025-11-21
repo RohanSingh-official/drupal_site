@@ -76,6 +76,13 @@ $settings['config_sync_directory'] = '../config/sync';
 $settings['hash_salt'] = getenv('DRUPAL_HASH_SALT') ?: 'fossee-drupal-site-secure-hash-salt-change-in-production';
 
 /**
+ * Explicitly mark the site as installed by setting the install profile.
+ * This prevents Drupal from redirecting to core/install.php when the
+ * database is already populated.
+ */
+$settings['install_profile'] = 'minimal';
+
+/**
  * Deployment identifier.
  */
 $settings['deployment_identifier'] = \Drupal::VERSION;
@@ -152,8 +159,8 @@ $settings['skip_permissions_hardening'] = FALSE;
 if (getenv('IS_DDEV_PROJECT') == 'true') {
   // DDEV-specific configurations
   $settings['trusted_host_patterns'] = [
-    '^fossee-drupal-clean\.ddev\.site$',
-    '^.*\.fossee-drupal-clean\.ddev\.site$',
+    '^fossee-drupal-site\.ddev\.site$',
+    '^.*\.fossee-drupal-site\.ddev\.site$',
   ];
   
   // Disable CSS and JS aggregation in development
@@ -232,9 +239,13 @@ switch ($environment) {
 
 /**
  * Assertions.
+ *
+ * The legacy Drupal assertion handler (Drupal\Component\Assertion\Handle)
+ * was removed in newer Drupal core, so we disable this to avoid fatal
+ * errors on Drupal 11.
  */
-assert_options(ASSERT_ACTIVE, TRUE);
-\Drupal\Component\Assertion\Handle::register();
+// assert_options(ASSERT_ACTIVE, TRUE);
+// \Drupal\Component\Assertion\Handle::register();
 
 /**
  * Show all error messages, with backtrace information.
@@ -244,4 +255,9 @@ if ($environment == 'development') {
   error_reporting(E_ALL);
   ini_set('display_errors', TRUE);
   ini_set('display_startup_errors', TRUE);
+}
+// Automatically generated include for settings managed by ddev.
+$ddev_settings = __DIR__ . '/settings.ddev.php';
+if (getenv('IS_DDEV_PROJECT') == 'true' && is_readable($ddev_settings)) {
+  require $ddev_settings;
 }

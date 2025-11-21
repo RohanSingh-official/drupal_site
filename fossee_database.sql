@@ -198,6 +198,12 @@ CREATE TABLE `key_value` (
   PRIMARY KEY (`collection`,`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- Table structure for table `sequences`
+-- Minimal definition is sufficient for Drupal's installer redirect check.
+CREATE TABLE `sequences` (
+  `id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 -- System configuration
 INSERT INTO `key_value` (`collection`, `name`, `value`) VALUES
 -- Installation markers (CRITICAL: tells Drupal it's already installed)

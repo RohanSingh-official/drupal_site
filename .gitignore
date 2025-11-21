@@ -76,3 +76,5 @@ temp_reference/
 
 # Keep database dump for sharing
 !fossee_database.sql
+/.editorconfig
+/.gitattributes
